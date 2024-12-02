@@ -26,7 +26,15 @@ app.use("/users", userRouter);
 app.use(errorHandler);
 
 // * Task 4: Continues from server/src/database/connectDB.js (B)
-
+app.use(express.static("../angular-client/dist/mean-lecture/browser"));
+app.get("*", (req, res) => {
+  res.sendFile(
+    path.resolve(
+      __dirname,
+      "../../angular-client/dist/mean-lecture/browser/index.html"
+    )
+  );
+});
 // * Task 4: Ends here
 
 app.listen(PORT, () => {
